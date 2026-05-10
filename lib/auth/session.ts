@@ -31,19 +31,30 @@ export async function requireSession(requiredRole: AppRole = "interviewer") {
   };
 }
 
-/** Non-redirecting variant — returns null if no session or not allowlisted. */
+/** Non-redirecting variant — returns null if no session, not allowlisted, or
+ *  Supabase isn't configured yet (e.g. preview deploy without env vars). */
 export async function getSessionOrNull() {
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return null;
-  const check = await checkAppUserByEmail(user.email);
-  if (!check.allowed) return null;
-  return {
-    user,
-    email: check.email,
-    role: check.role,
-    fullName: check.fullName,
-  };
+  if (
+    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  ) {
+    return null;
+  }
+  try {
+    const supabase = await createSupabaseServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return null;
+    const check = await checkAppUserByEmail(user.email);
+    if (!check.allowed) return null;
+    return {
+      user,
+      email: check.email,
+      role: check.role,
+      fullName: check.fullName,
+    };
+  } catch {
+    return null;
+  }
 }

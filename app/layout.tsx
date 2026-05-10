@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
+// Self-host Pretendard via npm package — no render-blocking CDN, no FOUT
+import "pretendard/dist/web/variable/pretendardvariable.css";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -35,14 +37,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={`${jetbrainsMono.variable} h-full antialiased`}>
-      <head>
-        {/* Pretendard (한국어 본문/헤드라인) — jsDelivr CDN, DDS v2.0과 동일 */}
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-        />
-      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
