@@ -1,0 +1,161 @@
+# =================================================================
+# 입사 30일 1on1 기록지 — Pixelab Beauty Clinic
+# =================================================================
+doc_id: FORM-1ON1-30D
+slug: form-1on1-30d
+name: 입사 30일 1on1 기록지
+category: onboarding
+version: 2
+date: "2026-05-10"
+anonymous: false
+retention: "RETENTION 3Y"
+
+intro:
+  eyebrow: "Onboarding · 30 Day Check-in"
+  title: |-
+    한 달 동안
+    어떻게 지내셨나요.
+  lede: >-
+    입사 한 달이 지났습니다. 팀장님과 30분 동안 마주 앉아 천천히 이야기를 나누고,
+    그 내용을 이 종이에 정리해 주세요. **이 기록은 평가에 사용되지 않습니다.**
+    지금 어떤 도움이 필요한지 함께 찾기 위한 자리입니다.
+
+bignum:
+  - { value: "30", label: "Minutes" }
+  - { value: "4",  label: "Questions" }
+  - { value: "1",  label: "Goal Forward" }
+
+topMeta:
+  - { id: newcomer,    label: "입사하신 분" }
+  - { id: role,        label: "소속과 직무" }
+  - { id: dates,       label: "입사일 / 면담일" }
+  - { id: lead,        label: "함께한 팀장님" }
+
+blocks:
+  # ── Section A: 본인 회고 ──────────────────────────
+  - type: section-head
+    num: A
+    title: "먼저, 본인 이야기를 들려주세요"
+    aside: "25 MIN"
+  - type: field-textarea
+    id: A1
+    num: A1
+    title: "지난 30일 중 가장 잘 풀렸던 일과 가장 막혔던 일을 한 가지씩 적어 주세요"
+    help: "큰 일이 아니어도 됩니다. 작지만 기억에 남는 순간이면 충분합니다."
+    placeholder: "잘 풀린 일 / 막힌 일을 각각 한 줄씩이라도."
+  - type: field-textarea
+    id: A2
+    num: A2
+    title: "입사 전에 상상했던 픽셀랩과 지금이 다른 점이 있다면 무엇인가요"
+    help: "기대했던 것과 다른 점을 솔직히 적어 주실수록 픽셀랩이 더 나아집니다."
+    placeholder: "기대 / 현실 / 그 사이의 간극."
+  - type: field-textarea
+    id: A3
+    num: A3
+    title: "함께 일하면서 가장 도움이 되었던 분, 가장 어려웠던 분을 한 분씩 알려 주세요"
+    help: "이름을 적어 주셔도 좋고, 익명으로 두셔도 됩니다. 평가가 아닙니다."
+    placeholder: "이름과 함께 그 이유를 짧게."
+  - type: field-textarea
+    id: A4
+    num: A4
+    title: "앞으로 60일 동안 어디까지 해 보고 싶으신가요"
+    help: "큰 목표가 아니어도 됩니다. 한두 가지면 충분합니다."
+    placeholder: "구체적인 목표 1~2개."
+
+  # ── Section B: 팀장 관찰 ──────────────────────────
+  - type: section-head
+    num: B
+    title: "팀장님이 본 한 달"
+    aside: "OBSERVATION"
+  - type: field-textarea
+    id: B1
+    num: B1
+    title: "강점 — 인상 깊었던 행동을 한 가지 적어 주세요"
+    help: "\"~을 잘한다\"가 아니라, \"~한 행동을 보였다\" 형태로 구체적으로 적어 주세요."
+  - type: field-textarea
+    id: B2
+    num: B2
+    title: "보완하면 좋을 행동을 한 가지 적어 주세요"
+    help: "개선이 가능한 행동만 다룹니다. 인성이나 성격에 대한 평가는 적지 않습니다."
+  - type: radio-group
+    id: B3
+    num: B3
+    title: "가장 강하게 느껴진 양식을 하나 골라 주세요"
+    help: "조직문화 8가지 양식 중 이 분에게서 가장 잘 보이는 한 가지를 표시합니다."
+    horizontal: true
+    options:
+      - { value: caring,    label: "배려" }
+      - { value: purpose,   label: "목표" }
+      - { value: learning,  label: "학습" }
+      - { value: enjoyment, label: "즐거움" }
+      - { value: results,   label: "결과" }
+      - { value: authority, label: "권위" }
+      - { value: safety,    label: "안전" }
+      - { value: order,     label: "질서" }
+  - type: check-group
+    id: B4
+    num: B4
+    title: "적응이 어려운 신호가 보이나요"
+    help: "해당하는 항목이 있으면 표시해 주세요. 없으면 가장 아래 \"해당 없음\"에 표시합니다."
+    options:
+      - { value: rights_negotiation, label: "자기 권리나 예외, 보상을 우선해서 협상하려는 모습이 보입니다" }
+      - { value: gossip,             label: "정보 통제력이 부족하고, 가십을 만들거나 옮기는 모습이 보입니다" }
+      - { value: accountability,     label: "본인의 책임을 인정하지 않고, 합의한 내용을 뒤집는 모습이 보입니다" }
+      - { value: none,               label: "해당 없음" }
+
+  # ── Section C: COMMITMENT ─────────────────────────
+  - type: section-head
+    num: C
+    title: "앞으로 30일을 정리합니다"
+    aside: "COMMITMENT"
+  - type: callout
+    label: "한 가지만 정합니다"
+    body: >-
+      본인이 해 볼 일 한 가지, 팀장님이 도와줄 일 한 가지. 다음 60일 면담에서 이 두 가지를
+      반드시 다시 점검합니다. 합의만 하고 점검하지 않으면 이 자리는 의미를 잃습니다.
+  - type: field-textarea
+    id: C1
+    num: C1
+    title: "본인이 해 볼 일 한 가지"
+    help: "60일 시점까지 끝낼 수 있는 구체적인 목표여야 합니다."
+    placeholder: "예) 트라이리프트 후기 작성을 단독으로 다섯 건 운영해 보기"
+  - type: field-textarea
+    id: C2
+    num: C2
+    title: "팀장님이 도와줄 일 한 가지"
+    help: "\"앞으로도 잘 챙기겠다\" 같은 약속이 아니라, 구체적으로 무엇을 할지 적습니다."
+    placeholder: "예) 첫 다섯 건은 팀장이 직접 검토 후 피드백 주기"
+
+  # ── Section D: ESCALATION ─────────────────────────
+  - type: section-head
+    num: D
+    title: "인사 라인(최호준)에 알릴 일"
+    aside: "ESCALATION"
+  - type: table
+    columns:
+      - { header: "상황", width: "32%" }
+      - { header: "해당하면 인사에 알려 주세요" }
+    rows:
+      - ["바로 알리기", "적응 신호 한 가지라도 체크된 경우, 또는 퇴사 의사를 비치신 경우"]
+      - ["이번 주 안에", "처우나 계약에 대한 질의, 또는 다른 직원과의 갈등 신호가 있는 경우"]
+      - ["월 보고로 충분", "위 상황이 모두 해당되지 않으며, 정상적으로 적응 중인 경우"]
+  - type: field-textarea
+    id: D1
+    num: D1
+    title: "인사에 전달하실 내용을 적어 주세요"
+    help: "없으면 \"해당 없음\"이라고만 적어 주시면 됩니다."
+
+  # ── Section E: SIGN ───────────────────────────────
+  - type: section-head
+    num: E
+    title: "확인"
+    aside: "SIGN"
+  - type: meta-grid
+    columns: 2
+    cells:
+      - { id: lead_sign, label: "팀장님 서명 / 일자",  fieldType: signature }
+      - { id: hr_sign,   label: "인사 수령 확인",      fieldType: signature }
+
+footer:
+  left: "FORM-1ON1-30D · v2.0"
+  right: "RETENTION 3Y"

@@ -1,0 +1,125 @@
+# =================================================================
+# 조직문화 16문항 자가 진단 — Pixelab Beauty Clinic
+# =================================================================
+doc_id: DIAG-CULTURE-16Q
+slug: diag-culture-16q
+name: 조직문화 16문항 자가 진단
+category: culture
+version: 2
+date: "2026-05-10"
+anonymous: true
+
+intro:
+  eyebrow: "Culture Diagnostic · 16 Questions"
+  title: |-
+    지금 픽셀랩의 분위기,
+    그대로 알려 주세요.
+  lede: >-
+    픽셀랩에서 일하면 무엇을 얻는지, 그 답을 정의하기 위한 첫 걸음입니다.
+    **'이렇게 되면 좋겠다'**가 아니라, **지금 실제로 그렇다고 느껴지는 만큼**
+    답해 주세요. 응답은 익명으로 처리되며, 누가 적었는지 알 수 없습니다.
+
+bignum:
+  - { value: "16",   label: "Questions" }
+  - { value: "7",    label: "Minutes" }
+  - { value: "100%", label: "Anonymous" }
+
+topCallout:
+  label: "답하시기 전에"
+  body: >-
+    각 문항마다 1점(전혀 그렇지 않다)부터 5점(매우 그렇다) 중 하나에 표시해 주세요.
+    정답은 없습니다. 떠오르는 그대로가 가장 정확한 답입니다.
+
+topMeta:
+  - { id: dept,   label: "소속" }
+  - { id: tenure, label: "재직 기간" }
+  - { id: date,   label: "응답일",   fieldType: date }
+
+topAnchorBar:
+  type: anchor-bar
+  left: "1 · 전혀 아니다"
+  right: "매우 그렇다 · 5"
+
+blocks:
+  # ── A 배려 ────────────────────────────────────────
+  - type: likert-cluster
+    tag: A
+    name: 배려
+    keywords: "Caring · 따뜻함 / 협동 / 신뢰"
+    questions:
+      - { id: A1, text: "우리 병원에서는 동료들이 서로 따뜻하게 협력하며 신뢰가 깊습니다" }
+      - { id: A2, text: "우리 병원의 분위기는 의리 있고 가족 같다고 느낍니다" }
+
+  # ── B 목표 ────────────────────────────────────────
+  - type: likert-cluster
+    tag: B
+    name: 목표
+    keywords: "Purpose · 이상 / 이타 / 장기"
+    questions:
+      - { id: B1, text: "우리 병원은 단순한 매출을 넘어 더 큰 의미와 이상을 추구합니다" }
+      - { id: B2, text: "우리 병원은 환자와 사회에 기여하는 일을 중요하게 생각합니다" }
+
+  # ── C 학습 ────────────────────────────────────────
+  - type: likert-cluster
+    tag: C
+    name: 학습
+    keywords: "Learning · 탐구 / 창의 / 모험"
+    questions:
+      - { id: C1, text: "우리 병원은 새로운 아이디어와 시도를 환영합니다" }
+      - { id: C2, text: "우리 병원은 호기심이 많고 탐구적입니다" }
+
+  # ── D 즐거움 ──────────────────────────────────────
+  - type: likert-cluster
+    tag: D
+    name: 즐거움
+    keywords: "Enjoyment · 재미 / 활기 / 유머"
+    questions:
+      - { id: D1, text: "우리 병원은 재미있고 활기찬 분위기입니다" }
+      - { id: D2, text: "우리 병원에서는 사람들이 자발적이고 유머가 있습니다" }
+
+  # ── E 결과 ────────────────────────────────────────
+  - type: likert-cluster
+    tag: E
+    name: 결과
+    keywords: "Results · 성취 / 승리 / KPI"
+    questions:
+      - { id: E1, text: "우리 병원에서는 성과와 목표 달성이 가장 중요합니다" }
+      - { id: E2, text: "우리 병원에서는 능력과 성공이 인정받습니다" }
+
+  # ── F 권위 ────────────────────────────────────────
+  - type: likert-cluster
+    tag: F
+    name: 권위
+    keywords: "Authority · 결단 / 통제 / 강력"
+    questions:
+      - { id: F1, text: "우리 병원에서는 결단력과 자신감이 강조됩니다" }
+      - { id: F2, text: "우리 병원에서는 강한 리더가 명확히 지시합니다" }
+
+  # ── G 안전 ────────────────────────────────────────
+  - type: likert-cluster
+    tag: G
+    name: 안전
+    keywords: "Safety · 계획 / 예측 / 신중"
+    questions:
+      - { id: G1, text: "우리 병원에서는 위험을 미리 예측하고 대비합니다" }
+      - { id: G2, text: "우리 병원에서는 신중하고 계획적인 행동이 인정받습니다" }
+
+  # ── H 질서 ────────────────────────────────────────
+  - type: likert-cluster
+    tag: H
+    name: 질서
+    keywords: "Order · 규칙 / 체계 / 전통"
+    questions:
+      - { id: H1, text: "우리 병원에서는 규칙과 절차가 잘 지켜집니다" }
+      - { id: H2, text: "우리 병원에서는 공동의 룰과 오랜 전통을 중요하게 여깁니다" }
+
+outroCallout:
+  label: "다 적으셨다면"
+  body: >-
+    작성을 마친 응답지는 행정실 비밀 회수함에 넣어 주세요. 회수자는 응답자가 누구인지
+    알 수 없습니다. 집계 결과는 5월 말 사내 공지로 함께 공유해 드릴 예정이며, 결과를 토대로
+    픽셀랩의 EVP를 정의해 나갑니다. 시간을 내어 답해 주셔서 감사합니다.
+
+footer:
+  left: "DIAG-CULTURE-16Q · v2.0"
+  right: "ANONYMOUS"
