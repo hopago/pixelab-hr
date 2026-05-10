@@ -67,12 +67,8 @@ export default async function RetentionPage({
         <Filters status={status} severity={severity} />
       </div>
 
-      <div
-        style={{
-          background: "var(--color-paper)",
-          border: "1px solid var(--color-line)",
-        }}
-      >
+      <div className="bg-paper border border-line">
+        <div className="px-table-wrap">
         <table className="px-table">
           <thead>
             <tr>
@@ -198,6 +194,7 @@ export default async function RetentionPage({
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </AdminPage>
   );

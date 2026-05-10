@@ -49,13 +49,7 @@ export default async function CandidatesPage() {
         </summary>
         <form
           action={createCandidate}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr auto",
-            gap: "var(--spacing-s3)",
-            marginTop: "var(--spacing-s4)",
-            alignItems: "end",
-          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] gap-3 mt-4 items-end"
         >
           <Field label="이름" required>
             <input
@@ -102,11 +96,7 @@ export default async function CandidatesPage() {
       </details>
 
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${STAGES.length}, 1fr)`,
-          gap: "var(--spacing-s3)",
-        }}
+        className="grid grid-flow-col auto-cols-[minmax(220px,1fr)] gap-3 overflow-x-auto md:grid-flow-row md:auto-cols-auto md:grid-cols-3 lg:grid-cols-6 -mx-5 px-5 md:mx-0 md:px-0 pb-2"
       >
         {STAGES.map((s) => {
           const inStage =

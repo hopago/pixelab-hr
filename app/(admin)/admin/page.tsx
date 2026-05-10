@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { AdminPage } from "@/components/admin/AdminPage";
+import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -36,14 +37,7 @@ export default async function Dashboard() {
       title="픽셀랩 HR"
       description="조직문화 진단, 1on1 면담, 면접 평가, 후보자 풀, 리텐션 신호를 한 곳에서 관리합니다."
     >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "var(--spacing-s5)",
-          marginBottom: "var(--spacing-s7)",
-        }}
-      >
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 mb-8 md:mb-12">
         <Stat value={stats.templates} label="Form Templates" />
         <Stat value={stats.links} label="Issued Links" />
         <Stat value={stats.responses} label="Responses" />
@@ -55,13 +49,7 @@ export default async function Dashboard() {
         />
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "var(--spacing-s5)",
-        }}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
         <QuickAction
           href="/admin/links/new"
           title="새 응답 링크 발급"
@@ -100,50 +88,20 @@ function Stat({
 }) {
   return (
     <div
-      style={{
-        background: "var(--color-paper)",
-        border: "1px solid var(--color-line)",
-        padding: "var(--spacing-s5)",
-        borderTop:
-          accent === "warn"
-            ? "3px solid var(--color-warn)"
-            : "3px solid var(--color-ink)",
-      }}
+      className={cn(
+        "bg-paper border border-line p-4 md:p-5",
+        "border-t-[3px]",
+        accent === "warn" ? "border-t-warn" : "border-t-ink",
+      )}
     >
-      <div
-        style={{
-          fontSize: 44,
-          fontWeight: 700,
-          letterSpacing: "-0.03em",
-          fontFeatureSettings: '"tnum"',
-          lineHeight: 1,
-          marginBottom: "var(--spacing-s2)",
-        }}
-      >
+      <div className="text-[32px] md:text-[44px] font-bold tracking-[-0.03em] leading-none mb-2 [font-feature-settings:'tnum']">
         {value}
       </div>
-      <div
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "var(--text-meta)",
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          color: "var(--color-mute)",
-        }}
-      >
+      <div className="font-mono text-[10px] md:text-[11px] tracking-[0.08em] uppercase text-mute">
         {label}
       </div>
       {aside && (
-        <div
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: 10,
-            color: "var(--color-warn)",
-            marginTop: 4,
-          }}
-        >
-          {aside}
-        </div>
+        <div className="font-mono text-[10px] text-warn mt-1">{aside}</div>
       )}
     </div>
   );
@@ -161,21 +119,18 @@ function QuickAction({
   return (
     <Link
       href={href}
-      style={{
-        display: "block",
-        textDecoration: "none",
-        color: "inherit",
-        background: "var(--color-paper)",
-        border: "1px solid var(--color-line)",
-        padding: "var(--spacing-s5)",
-      }}
+      className="
+        block bg-paper border border-line p-5 md:p-6
+        no-underline text-inherit
+        transition-all duration-200
+        hover:border-ink hover:-translate-y-px
+        hover:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.15)]
+      "
     >
-      <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 6 }}>
+      <div className="text-[15px] md:text-[16px] font-semibold mb-1.5">
         {title}
       </div>
-      <div style={{ fontSize: "var(--text-small)", color: "var(--color-ink-4)", lineHeight: 1.6 }}>
-        {desc}
-      </div>
+      <div className="text-small text-ink-4 leading-[1.65]">{desc}</div>
     </Link>
   );
 }

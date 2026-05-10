@@ -41,13 +41,7 @@ export default async function UsersPage() {
         </summary>
         <form
           action={addAppUser}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr auto",
-            gap: "var(--spacing-s3)",
-            marginTop: "var(--spacing-s4)",
-            alignItems: "end",
-          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_auto] gap-3 mt-4 items-end"
         >
           <Field label="이메일" required>
             <input type="email" name="email" required style={inputStyle} />
@@ -80,12 +74,8 @@ export default async function UsersPage() {
         </form>
       </details>
 
-      <div
-        style={{
-          background: "var(--color-paper)",
-          border: "1px solid var(--color-line)",
-        }}
-      >
+      <div className="bg-paper border border-line">
+        <div className="px-table-wrap">
         <table className="px-table">
           <thead>
             <tr>
@@ -172,6 +162,7 @@ export default async function UsersPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </AdminPage>
   );

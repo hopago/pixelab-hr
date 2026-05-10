@@ -185,13 +185,7 @@ export function LinkIssuanceForm({ options }: { options: Option[] }) {
         </Field>
       )}
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "var(--spacing-s5)",
-        }}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
         <Field label="만료일 (선택)">
           <input
             type="date"
@@ -264,7 +258,8 @@ function IssuedList({ links }: { links: IssuedLink[] }) {
       >
         발급 완료 · {links.length}건
       </div>
-      <table className="px-table" style={{ marginBottom: "var(--spacing-s4)" }}>
+      <div className="px-table-wrap mb-4">
+      <table className="px-table">
         <thead>
           <tr>
             <th style={{ width: "30%" }}>이름</th>
@@ -301,6 +296,7 @@ function IssuedList({ links }: { links: IssuedLink[] }) {
           ))}
         </tbody>
       </table>
+      </div>
       <a
         href={`data:text/csv;charset=utf-8,${encodeURIComponent(csv)}`}
         download="issued-links.csv"

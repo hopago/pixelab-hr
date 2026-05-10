@@ -1,3 +1,5 @@
+import { Logo } from "./Logo";
+
 type MetaItem = {
   key: string;
   value: string;
@@ -10,16 +12,12 @@ type MastheadProps = {
 };
 
 export function Masthead({
-  brand = "Pixelab",
   subbrand = "Beauty Clinic",
   meta = [],
 }: MastheadProps) {
   return (
     <header className="px-masthead">
-      <div>
-        <div className="px-wordmark">{brand}</div>
-        <div className="px-subbrand">{subbrand}</div>
-      </div>
+      <Logo variant="on-dark" size="md" subbrand={subbrand} />
       {meta.length > 0 && (
         <div className="px-doc-meta">
           {meta.map((item, idx) => (

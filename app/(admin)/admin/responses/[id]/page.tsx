@@ -35,34 +35,17 @@ export default async function ResponseDetailPage({
   return (
     <div>
       {/* meta strip above the rendered form */}
-      <div
-        style={{
-          padding: "var(--spacing-s4) var(--spacing-s8)",
-          background: "var(--color-ink)",
-          color: "var(--color-paper)",
-          display: "flex",
-          alignItems: "center",
-          gap: "var(--spacing-s5)",
-          fontFamily: "var(--font-mono)",
-          fontSize: 11,
-          letterSpacing: "0.06em",
-          textTransform: "uppercase",
-        }}
-      >
-        <span style={{ opacity: 0.55 }}>RESPONSE</span>
+      <div className="bg-ink text-paper px-5 py-3 md:px-12 md:py-4 font-mono text-[10px] md:text-[11px] tracking-[0.06em] uppercase flex flex-wrap items-center gap-x-4 md:gap-x-6 gap-y-2">
+        <span className="opacity-55">RESPONSE</span>
         <span>{schema.doc_id} · v{schema.version}</span>
-        <span style={{ opacity: 0.55 }}>SUBMITTED</span>
+        <span className="opacity-55">SUBMITTED</span>
         <span>{new Date(response.submitted_at).toLocaleString("ko-KR")}</span>
-        <span style={{ opacity: 0.55 }}>BY</span>
+        <span className="opacity-55">BY</span>
         <span>{isAnonymous ? "(익명)" : response.submitter_email}</span>
-        <span style={{ marginLeft: "auto" }}>
+        <span className="md:ml-auto">
           <a
             href="/admin/responses"
-            style={{
-              color: "var(--color-paper)",
-              textDecoration: "none",
-              opacity: 0.85,
-            }}
+            className="text-paper opacity-85 no-underline hover:opacity-100"
           >
             ← 응답 목록
           </a>

@@ -45,7 +45,8 @@ export default async function LinksListPage() {
       action={<AdminButton href="/admin/links/new">새 링크 발급</AdminButton>}
       description="최근 200건. 만료된 링크와 사용 완료된 링크도 함께 표시됩니다."
     >
-      <div style={{ background: "var(--color-paper)", border: "1px solid var(--color-line)" }}>
+      <div className="bg-paper border border-line">
+        <div className="px-table-wrap">
         <table className="px-table">
           <thead>
             <tr>
@@ -133,6 +134,7 @@ export default async function LinksListPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </AdminPage>
   );

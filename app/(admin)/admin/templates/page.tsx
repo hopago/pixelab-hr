@@ -38,16 +38,9 @@ export default async function TemplatesPage() {
       title="양식"
       description="forms/ 디렉토리의 YAML이 form_templates / form_versions 테이블에 동기화된 결과입니다. 새 버전을 발행하려면 YAML을 추가하고 npm run sync-forms 를 실행합니다."
     >
-      <div
-        style={{
-          background: "var(--color-paper)",
-          border: "1px solid var(--color-line)",
-        }}
-      >
-        <table
-          className="px-table"
-          style={{ background: "var(--color-paper)" }}
-        >
+      <div className="bg-paper border border-line">
+        <div className="px-table-wrap">
+        <table className="px-table">
           <thead>
             <tr>
               <th style={{ width: "20%" }}>슬러그</th>
@@ -87,6 +80,7 @@ export default async function TemplatesPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </AdminPage>
   );

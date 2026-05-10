@@ -146,14 +146,7 @@ export default async function CulturePage({
         </div>
       ) : (
         <>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "var(--spacing-s5)",
-              marginBottom: "var(--spacing-s7)",
-            }}
-          >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-8 md:mb-12">
             <ChartCard title="8양식 평균 · 레이더">
               <CultureRadar
                 data={chartData.map((d) => ({ name: d.name, mean: d.mean }))}
@@ -164,12 +157,8 @@ export default async function CulturePage({
             </ChartCard>
           </div>
 
-          <div
-            style={{
-              background: "var(--color-paper)",
-              border: "1px solid var(--color-line)",
-            }}
-          >
+          <div className="bg-paper border border-line">
+            <div className="px-table-wrap">
             <table className="px-table">
               <thead>
                 <tr>
@@ -213,6 +202,7 @@ export default async function CulturePage({
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </>
       )}

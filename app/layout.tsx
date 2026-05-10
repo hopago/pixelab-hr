@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -9,8 +9,23 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pixelab HR",
+  title: {
+    default: "Pixelab HR",
+    template: "%s · Pixelab HR",
+  },
   description: "픽셀랩성형외과의원 인사 관리",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
+  applicationName: "Pixelab HR",
+  authors: [{ name: "Pixelab Beauty Clinic" }],
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: "#0A0A0A",
 };
 
 export default function RootLayout({

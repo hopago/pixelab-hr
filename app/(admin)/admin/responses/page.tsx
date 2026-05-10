@@ -71,13 +71,8 @@ export default async function ResponsesListPage({
     >
       <FilterBar templates={templates ?? []} active={sp.template} />
 
-      <div
-        style={{
-          background: "var(--color-paper)",
-          border: "1px solid var(--color-line)",
-          marginTop: "var(--spacing-s5)",
-        }}
-      >
+      <div className="bg-paper border border-line mt-5 md:mt-6">
+        <div className="px-table-wrap">
         <table className="px-table">
           <thead>
             <tr>
@@ -160,6 +155,7 @@ export default async function ResponsesListPage({
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </AdminPage>
   );

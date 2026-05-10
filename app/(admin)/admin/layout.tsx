@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { requireSession } from "@/lib/auth/session";
+import { Logo } from "@/components/dds";
 import { LogoutButton } from "@/components/admin/LogoutButton";
 
 const NAV: Array<{ href: string; label: string }> = [
@@ -22,75 +23,118 @@ export default async function AdminLayout({
   const session = await requireSession("admin");
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
+    <div className="flex flex-col md:flex-row min-h-screen">
+      {/* ─── Sidebar (desktop) / Topbar (mobile) ────────── */}
       <aside
-        style={{
-          width: 220,
-          background: "var(--color-ink)",
-          color: "var(--color-paper)",
-          padding: "var(--spacing-s6) var(--spacing-s5)",
-          position: "sticky",
-          top: 0,
-          height: "100vh",
-          display: "flex",
-          flexDirection: "column",
-        }}
+        className="
+          bg-ink text-paper
+          md:w-[240px] md:h-screen md:sticky md:top-0
+          md:flex md:flex-col
+          md:px-7 md:py-9
+          flex flex-row items-center justify-between
+          px-5 py-4
+          z-20
+        "
       >
-        <div
-          style={{
-            fontWeight: 800,
-            fontSize: 22,
-            letterSpacing: "-0.025em",
-            marginBottom: "var(--spacing-s7)",
-          }}
-        >
-          Pixelab<span style={{ color: "var(--color-accent)" }}>·</span>HR
+        {/* Brand */}
+        <div className="md:mb-12">
+          <Link
+            href="/admin"
+            aria-label="Pixelab HR"
+            className="inline-block"
+          >
+            <Logo
+              variant="on-dark"
+              size="sm"
+              showSubbrand={true}
+              subbrand="HR · Internal"
+            />
+          </Link>
         </div>
+
+        {/* Nav (desktop = vertical, mobile = horizontal scroll) */}
         <nav
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--spacing-s2)",
-            flex: 1,
-          }}
+          className="
+            md:flex-1 md:flex md:flex-col md:gap-1 md:mt-0
+            hidden md:block
+          "
         >
           {NAV.map((n) => (
             <Link
               key={n.href}
               href={n.href}
-              style={{
-                color: "var(--color-paper)",
-                opacity: 0.85,
-                textDecoration: "none",
-                padding: "8px 0",
-                fontFamily: "var(--font-mono)",
-                fontSize: 12,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-              }}
+              className="
+                block py-2 px-2 -mx-2
+                font-mono text-[11px] tracking-[0.08em] uppercase
+                text-paper/85 hover:text-paper hover:bg-white/5
+                transition-colors
+                no-underline
+              "
             >
               {n.label}
             </Link>
           ))}
         </nav>
+
+        {/* User info + logout (desktop) */}
         <div
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: 10,
-            opacity: 0.6,
-            marginTop: "auto",
-            paddingTop: "var(--spacing-s4)",
-            borderTop: "1px solid rgba(255,255,255,0.1)",
-          }}
+          className="
+            hidden md:block
+            font-mono text-[10px] opacity-60
+            mt-auto pt-4
+            border-t border-white/10
+          "
         >
-          <div style={{ marginBottom: 4 }}>{session.email}</div>
+          <div className="mb-1 truncate">{session.email}</div>
           <div>ROLE · {session.role.toUpperCase()}</div>
           <LogoutButton />
         </div>
+
+        {/* Mobile: just role + logout button beside the brand */}
+        <div className="md:hidden flex items-center gap-3">
+          <span
+            className="
+              font-mono text-[10px] tracking-[0.08em] uppercase
+              text-paper/55
+            "
+          >
+            {session.role}
+          </span>
+          <LogoutButton />
+        </div>
       </aside>
-      <main style={{ flex: 1, background: "var(--color-surface)" }}>
-        {children}
-      </main>
+
+      {/* ─── Mobile-only horizontal nav strip ───────────── */}
+      <nav
+        className="
+          md:hidden
+          sticky top-0 z-10
+          bg-ink text-paper
+          border-t border-white/10
+          overflow-x-auto
+        "
+      >
+        <div className="flex whitespace-nowrap px-3">
+          {NAV.map((n) => (
+            <Link
+              key={n.href}
+              href={n.href}
+              className="
+                inline-block px-3 py-3
+                font-mono text-[11px] tracking-[0.08em] uppercase
+                text-paper/75 hover:text-paper
+                transition-colors
+                no-underline
+              "
+            >
+              {n.label}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
+      {/* ─── Main ──────────────────────────────────────── */}
+      <main className="flex-1 bg-surface min-w-0">{children}</main>
     </div>
   );
 }

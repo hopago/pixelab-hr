@@ -232,13 +232,8 @@ function Section({
         <span>{title}</span>
         <span>{count}</span>
       </div>
-      <div
-        style={{
-          background: "var(--color-paper)",
-          border: "1px solid var(--color-line)",
-        }}
-      >
-        {children}
+      <div className="bg-paper border border-line">
+        <div className="px-table-wrap">{children}</div>
       </div>
     </div>
   );

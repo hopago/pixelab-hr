@@ -1,4 +1,5 @@
 export { PageA4 } from "./PageA4";
+export { Logo } from "./Logo";
 export { Masthead } from "./Masthead";
 export { DisplayBlock } from "./DisplayBlock";
 export { BignumStrip } from "./BignumStrip";
