@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { resolveTokenForResponse } from "@/lib/response/lookups";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { collectResponseKeys } from "@/lib/schema/form-schema";
+import { extractRetentionSignals } from "@/lib/analytics/extract-signals";
 
 type SubmitBody = {
   values?: Record<string, unknown>;
@@ -48,17 +49,39 @@ export async function POST(
       };
 
   // Insert response.
-  const { error: insertErr } = await admin.from("form_responses").insert({
-    link_id: resolution.link.id,
-    version_id: resolution.version.id,
-    schema_snapshot_json: resolution.form,
-    payload_json: payload,
-    submitter_email: null, // (interviewer-auth flow can populate this later)
-    submitter_meta: submitterMeta,
-  });
-  if (insertErr) {
+  const { data: inserted, error: insertErr } = await admin
+    .from("form_responses")
+    .insert({
+      link_id: resolution.link.id,
+      version_id: resolution.version.id,
+      schema_snapshot_json: resolution.form,
+      payload_json: payload,
+      submitter_email: null, // (interviewer-auth flow can populate this later)
+      submitter_meta: submitterMeta,
+    })
+    .select("id")
+    .single();
+  if (insertErr || !inserted) {
     console.error("[submit] insert failed", insertErr);
     return NextResponse.json({ error: "저장 중 오류가 발생했습니다." }, { status: 500 });
+  }
+
+  // Auto-extract retention signals when the link is tied to an employee.
+  if (resolution.link.employee_id) {
+    const signals = extractRetentionSignals(resolution.form, payload);
+    if (signals.length > 0) {
+      const rows = signals.map((s) => ({
+        employee_id: resolution.link.employee_id,
+        signal_type: s.signalType,
+        severity: s.severity,
+        source_response_id: inserted.id,
+        notes: s.notes ?? null,
+      }));
+      const { error: sigErr } = await admin
+        .from("retention_signals")
+        .insert(rows);
+      if (sigErr) console.error("[submit] signal insert failed", sigErr);
+    }
   }
 
   // Increment use_count atomically.

@@ -78,18 +78,18 @@ export function AdminPage({
 
 export function AdminButton({
   href,
-  onClick,
   children,
   variant = "primary",
-  type = "button",
+  type = "submit",
   disabled,
+  download,
 }: {
   href?: string;
-  onClick?: () => void;
   children: ReactNode;
   variant?: "primary" | "ghost";
-  type?: "button" | "submit";
+  type?: "submit" | "button";
   disabled?: boolean;
+  download?: string | boolean;
 }) {
   const baseStyle = {
     fontFamily: "var(--font-mono)",
@@ -109,13 +109,17 @@ export function AdminButton({
   };
   if (href) {
     return (
-      <a href={href} style={baseStyle}>
+      <a
+        href={href}
+        style={baseStyle}
+        download={typeof download === "string" ? download : undefined}
+      >
         {children}
       </a>
     );
   }
   return (
-    <button type={type} onClick={onClick} disabled={disabled} style={baseStyle}>
+    <button type={type} disabled={disabled} style={baseStyle}>
       {children}
     </button>
   );
